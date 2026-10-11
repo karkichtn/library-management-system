@@ -1,6 +1,7 @@
-const API_URL =
+const rawApiUrl =
   (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) ||
   "http://localhost:5000/api";
+const API_URL = rawApiUrl.replace(/\/+$/, "");
 
 async function request(path, options = {}) {
   const headers = { ...options.headers };
