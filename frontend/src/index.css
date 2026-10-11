@@ -21,12 +21,40 @@ body {
 .auth-card,
 .page-card {
   width: 100%;
-  max-width: 420px;
+  max-width: 480px;
   padding: 30px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
+
+.home-card { max-width: 1100px; }
+.page-toolbar, .catalogue-heading, .book-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.page-toolbar p { margin: 0; }
+.role-badge, .book-count, .availability { display: inline-block; padding: 4px 9px; border-radius: 999px; font-size: 12px; font-weight: bold; }
+.role-badge, .book-count { background: #e0e7ff; color: #3730a3; }
+.catalogue { margin-top: 28px; }
+.catalogue h2 { margin-bottom: 4px; }
+.catalogue-heading p { margin-top: 0; color: #6b7280; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+.book-card { padding: 18px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; text-align: left; }
+.book-card h3 { margin: 0; font-size: 18px; }
+.book-author { margin: 5px 0 0; color: #6b7280; }
+.availability { background: #fee2e2; color: #991b1b; white-space: nowrap; }
+.availability.available { background: #dcfce7; color: #166534; }
+.book-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 0; }
+.book-details dt { color: #6b7280; font-size: 12px; } .book-details dd { margin: 3px 0 0; overflow-wrap: anywhere; }
+.secondary-button { background: #e5e7eb; color: #1f2937; margin-top: 0; }
+.filters { display: flex; align-items: end; gap: 12px; flex-wrap: wrap; padding: 16px 0; border-bottom: 1px solid #e5e7eb; }
+.filters label, .book-form label { display: flex; flex-direction: column; gap: 6px; font-weight: bold; font-size: 14px; flex: 1; min-width: 150px; }
+.filters input, .filters select, .book-form input { padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px; font: inherit; font-weight: normal; }
+.search-field { flex: 2 !important; }
+.book-card .secondary-button { margin-top: 18px; }
+.book-form { padding: 20px 0; border-bottom: 1px solid #e5e7eb; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 18px 0; }
+.form-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; } .form-heading h2 { margin-top: 0; }
+.text-button { background: #e5e7eb; color: #1f2937; border: 0; padding: 5px 8px; font-size: 14px; margin-top: 0; }
+.success-message { color: #166534; background: #dcfce7; padding: 10px; border-radius: 5px; }
 
 .auth-card h1,
 .page-card h1 {
@@ -49,12 +77,12 @@ body {
 
 button {
   padding: 11px 16px;
-  margin-top: 20px;
+  margin-top: 10px;
   border: none;
   border-radius: 5px;
   background: #2563eb;
   color: white;
-  font-size: 16px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -69,6 +97,11 @@ button:disabled {
 
 a {
   color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .error-message {
@@ -83,9 +116,280 @@ a {
   text-align: center;
 }
 
-@media (max-width: 480px) {
-  .auth-card,
-  .page-card {
-    padding: 22px;
+.role-tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: #e0e7ff;
+  color: #3730a3;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.admin-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.action-link {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #2563eb;
+  color: white;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.action-link:hover {
+  background: #1d4ed8;
+  text-decoration: none;
+}
+
+.sub-link {
+  display: inline-block;
+  margin-top: 4px;
+}
+
+.student-loans {
+  margin-top: 20px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 15px;
+}
+
+.loans-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.loan-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  background: #fafafa;
+}
+
+.logout-btn {
+  background: #4b5563;
+  margin-top: 15px;
+}
+
+.issues-container {
+  max-width: 1050px;
+  margin: 30px auto;
+  padding: 0 16px;
+}
+
+.issues-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  background: white;
+  padding: 20px 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.issues-header h2 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.back-link {
+  font-size: 14px;
+  padding: 8px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  color: #374151;
+}
+
+.back-link:hover {
+  background: #f3f4f6;
+  text-decoration: none;
+}
+
+.issue-form-card,
+.records-card {
+  background: white;
+  padding: 24px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.issue-form-card h3,
+.records-card h3 {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.issue-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  align-items: flex-end;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+}
+
+.success-banner {
+  background: #dcfce7;
+  color: #166534;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.error-banner {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.retry-btn {
+  margin-top: 0;
+  padding: 4px 10px;
+  font-size: 12px;
+  background: #b91c1c;
+}
+
+.records-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.filter-group {
+  font-size: 14px;
+}
+
+.filter-group select {
+  padding: 6px 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-left: 6px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+.records-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.records-table th,
+.records-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.records-table th {
+  background: #f9fafb;
+  color: #4b5563;
+  font-weight: 600;
+}
+
+.meta-text {
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 2px;
+}
+
+.status-pill {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-pill.issued {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-pill.returned {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.return-btn {
+  margin-top: 0;
+  padding: 6px 12px;
+  font-size: 13px;
+  background: #059669;
+}
+
+.return-btn:hover {
+  background: #047857;
+}
+
+.done-text {
+  color: #9ca3af;
+  font-size: 13px;
+}
+
+.status-text,
+.empty-state {
+  color: #6b7280;
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+@media (max-width: 640px) {
+  .issues-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
   }
+  .issue-form {
+    grid-template-columns: 1fr;
+  }
+  .page-toolbar, .catalogue-heading, .book-card-heading { align-items: flex-start; flex-direction: column; }
 }
