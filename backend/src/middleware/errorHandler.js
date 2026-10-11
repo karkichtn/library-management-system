@@ -4,7 +4,9 @@ function errorHandler(err, req, res, next) {
   }
 
   // Server-side diagnostic logging (avoids logging passwords or tokens)
-  console.error(`[Error] ${req.method} ${req.originalUrl}:`, err.message || err);
+  const method = req?.method || "REQUEST";
+  const url = req?.originalUrl || req?.url || "";
+  console.error(`[Error] ${method} ${url}:`, err.message || err);
 
   // 1. Malformed JSON payload (from express.json())
   if (err instanceof SyntaxError && err.status === 400 && "body" in err) {

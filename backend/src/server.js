@@ -28,7 +28,39 @@ app.get("/api/health", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
 
+// Test routes to verify centralized error-handling middleware through the Express pipeline
+if (process.env.NODE_ENV === "test") {
+  app.get("/api/test-errors/unexpected", (req, res, next) => {
+    const error = new Error("Simulated database failure");
+    error.stack = "Error: Simulated database failure\nat db.js:10";
+    next(error);
+  });
+
+  app.get("/api/test-errors/validation", (req, res, next) => {
+    const error = new Error("Book validation failed: title is required");
+    error.name = "ValidationError";
+    next(error);
+  });
+
+  app.get("/api/test-errors/cast", (req, res, next) => {
+    const error = new Error("Cast to ObjectId failed for value invalid-id");
+    error.name = "CastError";
+    error.path = "id";
+    next(error);
+  });
+
+  app.get("/api/test-errors/duplicate", (req, res, next) => {
+    const error = new Error("E11000 duplicate key error");
+    error.code = 11000;
+    error.keyPattern = { isbn: 1 };
+    next(error);
+  });
+}
+
+// 404 handler for unknown routes (registered after all routes)
 app.use(notFoundHandler);
+
+// Centralized error handler (registered last with 4 arguments)
 app.use(errorHandler);
 
 async function startServer() {
