@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import BookCatalogue from "../components/BookCatalogue";
 
 function Home() {
   const { user, logout } = useAuth();
@@ -12,18 +13,15 @@ function Home() {
 
   return (
     <div className="home-page">
-      <div className="page-card">
+      <div className="page-card home-card">
         <h1>Library Management System</h1>
-        <p>Welcome, {user.name}!</p>
-        <p>
-          Role: {user.role === "admin" ? "Admin/Librarian" : "Student"}
-        </p>
+        <div className="page-toolbar"><p>Welcome, {user.name}! <span className="role-badge">{user.role === "admin" ? "Admin/Librarian" : "Student"}</span></p><button className="secondary-button" onClick={handleLogout}>Logout</button></div>
         {user.role === "admin" && (
           <p>
-            <Link to="/admin">Open admin check page</Link>
+            <Link to="/admin">Manage books</Link>
           </p>
         )}
-        <button onClick={handleLogout}>Logout</button>
+        <BookCatalogue />
       </div>
     </div>
   );

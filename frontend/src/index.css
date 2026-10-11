@@ -28,6 +28,33 @@ body {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+.home-card { max-width: 1100px; }
+.page-toolbar, .catalogue-heading, .form-heading, .book-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.page-toolbar p { margin: 0; }
+.role-badge, .book-count, .availability { display: inline-block; padding: 4px 9px; border-radius: 999px; font-size: 12px; font-weight: bold; }
+.role-badge, .book-count { background: #e0e7ff; color: #3730a3; }
+.catalogue { margin-top: 28px; }
+.catalogue h2, .book-form h2 { margin-bottom: 4px; }
+.catalogue-heading p { margin-top: 0; color: #6b7280; }
+.filters { display: flex; align-items: end; gap: 12px; flex-wrap: wrap; padding: 16px 0; border-bottom: 1px solid #e5e7eb; }
+.filters label, .book-form label { display: flex; flex-direction: column; gap: 6px; font-weight: bold; font-size: 14px; flex: 1; min-width: 150px; }
+.filters input, .filters select, .book-form input { padding: 10px; border: 1px solid #cbd5e1; border-radius: 5px; font: inherit; font-weight: normal; }
+.search-field { flex: 2 !important; }
+.book-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 20px; }
+.book-card { padding: 18px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fff; text-align: left; }
+.book-card h3 { margin: 0; font-size: 18px; }
+.book-author { margin: 5px 0 0; color: #6b7280; }
+.availability { background: #fee2e2; color: #991b1b; white-space: nowrap; }
+.availability.available { background: #dcfce7; color: #166534; }
+.book-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0 0; }
+.book-details div { min-width: 0; } .book-details dt { color: #6b7280; font-size: 12px; } .book-details dd { margin: 3px 0 0; overflow-wrap: anywhere; }
+.secondary-button, .text-button { background: #e5e7eb; color: #1f2937; margin-top: 0; }
+.book-card .secondary-button { margin-top: 18px; }
+.book-form { padding: 20px 0; border-bottom: 1px solid #e5e7eb; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 18px 0; }
+.form-heading h2 { margin-top: 0; } .text-button { border: 0; padding: 5px 8px; font-size: 14px; }
+.success-message { color: #166534; background: #dcfce7; padding: 10px; border-radius: 5px; }
+
 .auth-card h1,
 .page-card h1 {
   margin-top: 0;
@@ -38,6 +65,8 @@ body {
   margin-top: 16px;
   margin-bottom: 6px;
 }
+
+.book-form label { margin-top: 0; }
 
 .auth-card input {
   width: 100%;
@@ -88,4 +117,5 @@ a {
   .page-card {
     padding: 22px;
   }
+  .page-toolbar, .catalogue-heading, .form-heading, .book-card-heading { align-items: flex-start; flex-direction: column; }
 }
