@@ -36,8 +36,15 @@ function AdminPage() {
   return (
     <div className="home-page">
       <div className="page-card home-card">
-        <h1>Manage books</h1>
-        <p>Admin-only catalogue management.</p>
+        <div className="page-toolbar">
+          <div>
+            <h1>Manage books</h1>
+            <p>Admin-only catalogue management.</p>
+          </div>
+          <Link to="/issues" className="action-link">
+            Manage Book Issues & Returns
+          </Link>
+        </div>
         {success && <p className="success-message">{success}</p>}
         <BookForm
           key={editingBook ? editingBook._id : `new-${refreshKey}`}

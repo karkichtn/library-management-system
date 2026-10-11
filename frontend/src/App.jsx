@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import AdminPage from "./pages/AdminPage";
+import IssueManagement from "./pages/IssueManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -23,6 +24,14 @@ function App() {
         element={
           <ProtectedRoute requiredRole="admin">
             <AdminPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/issues"
+        element={
+          <ProtectedRoute requiredRole="admin">
+            <IssueManagement />
           </ProtectedRoute>
         }
       />
