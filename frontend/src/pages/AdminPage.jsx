@@ -12,13 +12,25 @@ function AdminPage() {
   const [success, setSuccess] = useState("");
 
   async function handleSubmit(book) {
-    setSaving(true); setError(""); setSuccess("");
+    setSaving(true);
+    setError("");
+    setSuccess("");
+    const isEdit = Boolean(editingBook);
     try {
-      if (editingBook) await updateBook(editingBook._id, book);
-      else await createBook(book);
-      setEditingBook(null); setRefreshKey((value) => value + 1); setSuccess(editingBook ? "Book updated successfully." : "Book added successfully.");
-    } catch (requestError) { setError(requestError.message); }
-    finally { setSaving(false); }
+      if (isEdit) {
+        await updateBook(editingBook._id, book);
+      } else {
+        await createBook(book);
+      }
+      setEditingBook(null);
+      setRefreshKey((value) => value + 1);
+      setSuccess(isEdit ? "Book updated successfully." : "Book added successfully.");
+    } catch (requestError) {
+      setError(requestError.message);
+      throw requestError;
+    } finally {
+      setSaving(false);
+    }
   }
 
   return (
@@ -27,8 +39,26 @@ function AdminPage() {
         <h1>Manage books</h1>
         <p>Admin-only catalogue management.</p>
         {success && <p className="success-message">{success}</p>}
-        <BookForm book={editingBook} onSubmit={handleSubmit} onCancel={() => setEditingBook(null)} saving={saving} serverError={error} />
-        <BookCatalogue canEdit onEdit={(book) => { setEditingBook(book); setError(""); setSuccess(""); }} refreshKey={refreshKey} />
+        <BookForm
+          key={editingBook ? editingBook._id : `new-${refreshKey}`}
+          book={editingBook}
+          onSubmit={handleSubmit}
+          onCancel={() => {
+            setEditingBook(null);
+            setError("");
+          }}
+          saving={saving}
+          serverError={error}
+        />
+        <BookCatalogue
+          canEdit
+          onEdit={(book) => {
+            setEditingBook(book);
+            setError("");
+            setSuccess("");
+          }}
+          refreshKey={refreshKey}
+        />
         <Link to="/">Go back home</Link>
       </div>
     </div>
